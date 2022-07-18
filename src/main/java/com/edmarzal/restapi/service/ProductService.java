@@ -17,4 +17,8 @@ public class ProductService {
         return productRepository.save(product);
     } 
 
+    public Product getProduct(long productId){
+        return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("error 404"));
+    }
+
 }
