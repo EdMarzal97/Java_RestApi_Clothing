@@ -1,5 +1,7 @@
 package com.edmarzal.restapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edmarzal.restapi.model.Product;
 import com.edmarzal.restapi.service.ProductService;
+
+
 
 @RestController
 public class ProductController {
@@ -29,13 +33,17 @@ public class ProductController {
     } 
 
     //This will GET a single Product by the ID
-    @GetMapping("/")
+    @GetMapping("/id")
     public ResponseEntity<Product> getProduct(@RequestParam(name = "productId") long productId){
         Product product = productService.getProduct(productId);
         return new ResponseEntity<>( product, HttpStatus.OK);
     }
 
     //This will GET all the Products
+    @GetMapping("/products")
+    public List<Product> getProducts(){
+        return productService.getProducts();
+    }
 
     //This will UPDATE a Product
 

@@ -1,5 +1,7 @@
 package com.edmarzal.restapi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,9 @@ public class ProductService {
     public Product getProduct(long productId){
         return productRepository.findById(productId).orElseThrow(() -> new RuntimeException("error 404"));
     }
+
+    public List<Product> getProducts(){
+        return productRepository.findAll();
+    } 
 
 }
