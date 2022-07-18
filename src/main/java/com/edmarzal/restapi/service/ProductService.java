@@ -27,4 +27,16 @@ public class ProductService {
         return productRepository.findAll();
     } 
 
+    public Product updatedProduct(long productId, Product product){
+        Product existingProduct = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("error 404"));
+        existingProduct.setProduct_name(product.getProduct_name());
+        existingProduct.setSize(product.getSize());
+        existingProduct.setColor(product.getColor());
+        existingProduct.setCategory(product.getCategory());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setIs_in_sale(product.getIs_in_sale());
+        productRepository.save(existingProduct);
+        return existingProduct;
+    }
+
 }
