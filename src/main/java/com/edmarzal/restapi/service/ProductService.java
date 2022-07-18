@@ -39,4 +39,10 @@ public class ProductService {
         return existingProduct;
     }
 
+    public Product deletedProduct(long productId){
+        Product existingProduct = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("error 404"));
+        productRepository.deleteById(productId);
+        return existingProduct;
+    }
+
 }
