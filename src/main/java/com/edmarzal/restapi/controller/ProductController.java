@@ -16,54 +16,52 @@ import org.springframework.web.bind.annotation.RestController;
 import com.edmarzal.restapi.model.Product;
 import com.edmarzal.restapi.service.ProductService;
 
-
-
 @RestController
 public class ProductController {
 
     @Autowired
     private ProductService productService;
-    
-    //TODO
-    //This will CREATE a new Product on the database
+
+    // This will CREATE a new Product on the database
     @PostMapping("/product")
-    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
+    public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
 
         Product savedProduct = productService.saveProduct(product);
         return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
 
-    } 
-
-    //This will GET a single Product by the ID
-    @GetMapping("/id")
-    public ResponseEntity<Product> getProduct(@RequestParam(name = "productId") long productId){
-        Product product = productService.getProduct(productId);
-        return new ResponseEntity<>( product, HttpStatus.OK);
     }
 
-    //This will GET all the Products
+    // This will GET a single Product by the ID
+    @GetMapping("/id")
+    public ResponseEntity<Product> getProduct(@RequestParam(name = "productId") long productId) {
+        Product product = productService.getProduct(productId);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    // This will GET all the Products
     @GetMapping("/products")
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return productService.getProducts();
     }
 
-    //This will UPDATE a Product
+    // This will UPDATE a Product
     @PatchMapping("/")
-    public ResponseEntity<Product> updateProduct(@RequestParam(name = "productId") long productId, @RequestBody Product product){
+    public ResponseEntity<Product> updateProduct(@RequestParam(name = "productId") long productId,
+            @RequestBody Product product) {
         Product updatedProduct = productService.updatedProduct(productId, product);
         return new ResponseEntity<Product>(updatedProduct, HttpStatus.OK);
     }
 
-    //This will DELETE a Product
+    // This will DELETE a Product
     @DeleteMapping("/")
-    public ResponseEntity<Product> deleteProduct(@RequestParam(name = "productId") long productId){
+    public ResponseEntity<Product> deleteProduct(@RequestParam(name = "productId") long productId) {
         Product deletedProduct = productService.deletedProduct(productId);
         return new ResponseEntity<>(deletedProduct, HttpStatus.OK);
     }
 
-    //This allow to get a Product by the name USING RAW SQL STATEMENTS
+    // This allow to get a Product by the name USING RAW SQL STATEMENTS
     @GetMapping("/products-by-name")
-    public List<Product> getProductsByName(@RequestParam(name = "productName") String productName){
+    public List<Product> getProductsByName(@RequestParam(name = "productName") String productName) {
         return productService.getProductsByName(productName);
     }
 }
