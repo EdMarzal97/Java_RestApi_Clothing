@@ -62,4 +62,8 @@ public class ProductController {
     }
 
     //This allow to get a Product by the name USING RAW SQL STATEMENTS
+    @GetMapping("/products-by-name")
+    public List<Product> getProductsByName(@RequestParam(name = "productName") String productName){
+        return productService.getProductsByName(productName);
+    }
 }

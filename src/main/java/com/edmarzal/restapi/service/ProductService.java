@@ -45,4 +45,8 @@ public class ProductService {
         return existingProduct;
     }
 
+    public List<Product> getProductsByName(String productName){
+        return productRepository.getProductsByName(productName);
+    }
+
 }
