@@ -65,3 +65,7 @@ public class ProductController {
         return productService.getProductsByName(productName);
     }
 }
+
+// INVESTIGATE INNER JOINS AND JOINS ON MYSQL
+// MANY TO MANY KEYS TOO
+// WHAT HAPPEN WHEN I WANNA ORDER MANY PRODUCTS AT THE SAME CLIENT?
